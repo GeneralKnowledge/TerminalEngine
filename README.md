@@ -7,15 +7,15 @@ Phase 0 research and the Option B reuse decision are recorded in [`docs/research
 ## Quick start
 
 ```bash
+cargo test
 cargo run --release --bin te-demo
 ```
 
-Optional:
+Encoder modes (`--mode ascii|half-block|bgcolor`):
 
-```bash
-cargo run --release --bin te-demo -- --mode ascii
-cargo test
-```
+- `ascii` (default) — FG true-colour + density glyphs; works widely.
+- `half-block` — `▀` with FG/BG true-colour (needs a terminal that applies `48;2` backgrounds: Kitty, Ghostty, WezTerm, …).
+- `bgcolor` — BG true-colour fill + dim glyph (same BG requirement).
 
 ### Controls
 

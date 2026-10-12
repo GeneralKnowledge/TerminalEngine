@@ -23,7 +23,11 @@ use terminal_engine::{
 #[command(name = "te-demo", about = "TerminalEngine interactive demo")]
 struct Args {
     /// Initial encoder: ascii | half-block | bgcolor
-    #[arg(long, default_value = "half-block")]
+    ///
+    /// Prefer `half-block` on terminals with working true-colour backgrounds
+    /// (Kitty, Ghostty, WezTerm, …). Some VTE builds accept FG true-colour but
+    /// ignore BG, which makes half-block look striped; `ascii` is the safe default.
+    #[arg(long, default_value = "ascii")]
     mode: String,
 }
 
@@ -159,29 +163,50 @@ impl App {
         let [controls, viewport] =
             Layout::vertical([Constraint::Length(4), Constraint::Min(3)]).areas(area);
 
+        let panel = Style::default().fg(Color::Gray).bg(Color::Rgb(12, 14, 20));
         let help = Paragraph::new(vec![
             Line::from(vec![
                 Span::styled(
                     " TerminalEngine ",
                     Style::default()
                         .fg(Color::Yellow)
+                        .bg(Color::Rgb(12, 14, 20))
                         .add_modifier(Modifier::BOLD),
                 ),
-                Span::raw(format!(
-                    " mode={}  mesh={}  {:.0} fps",
-                    self.mode.label(),
-                    if self.mesh_kind == 0 { "cube" } else { "pyramid" },
-                    self.fps
-                )),
+                Span::styled(
+                    format!(
+                        " mode={}  mesh={}  {:.0} fps",
+                        self.mode.label(),
+                        if self.mesh_kind == 0 {
+                            "cube"
+                        } else {
+                            "pyramid"
+                        },
+                        self.fps
+                    ),
+                    panel,
+                ),
             ]),
-            Line::from(
+            Line::from(Span::styled(
                 "q quit · m next mode · 1/2 mesh · space toggle spin · arrows orbit · +/- zoom",
-            ),
+                panel,
+            )),
         ])
-        .block(Block::default().borders(Borders::ALL).title("controls"));
+        .style(panel)
+        .block(
+            Block::default()
+                .borders(Borders::ALL)
+                .border_style(panel)
+                .title("controls")
+                .style(panel),
+        );
         frame.render_widget(help, controls);
 
-        let block = Block::default().borders(Borders::ALL).title("viewport");
+        let block = Block::default()
+            .borders(Borders::ALL)
+            .border_style(panel)
+            .title("viewport")
+            .style(panel);
         let inner = block.inner(viewport);
         frame.render_widget(block, viewport);
 
