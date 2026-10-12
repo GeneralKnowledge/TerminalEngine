@@ -1,0 +1,28 @@
+[package]
+name = "terminal-engine"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.81"
+license = "MIT"
+description = "A small software rasterizer with pluggable terminal image encoders"
+readme = "README.md"
+keywords = ["terminal", "rasterizer", "tui", "graphics"]
+categories = ["graphics", "rendering", "command-line-utilities"]
+
+[dependencies]
+glam = "0.30"
+crossterm = "0.29"
+ratatui = "0.29"
+anyhow = "1.0"
+clap = { version = "4", features = ["derive"] }
+
+[dev-dependencies]
+pretty_assertions = "1.4"
+
+[[bin]]
+name = "te-demo"
+path = "src/bin/te_demo.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
