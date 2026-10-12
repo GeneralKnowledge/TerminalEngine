@@ -142,6 +142,10 @@ No prior milestone document exists in this repository (only `# TerminalEngine` R
 
 ---
 
+## Terminal specs
+
+Game-style Minimum / Recommended / Ultra requirements and a per-terminal roster live in [`terminal-specs.md`](terminal-specs.md).
+
 ## Environment note (verified during demo)
 
 On this agent’s **xfce4-terminal 1.1.3 / VTE** host: `COLORTERM=truecolor` is set, **foreground** `38;2` colours work, but **background** `48;2` colours are not applied (raw Crossterm probe: coloured spaces invisible; `▀` with FG+BG appears as black/white stripes). Consequently half-block and bgcolor encoders need a terminal with working BG true-colour for visual validation; ASCII density (FG-only) renders correctly. This is a host terminal limitation, not a framebuffer/encoder data bug (unit tests show correct `Color::Rgb` in the Ratatui `Buffer`).
