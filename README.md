@@ -4,6 +4,8 @@ A small Rust software rasterizer that draws into a **shared RGB framebuffer**, t
 
 Phase 0 research and the Option B reuse decision are recorded in [`docs/research.md`](docs/research.md).
 
+**Terminal requirements** (Minimum / Recommended / Ultra, plus a per-app roster): [`docs/terminal-specs.md`](docs/terminal-specs.md).
+
 ## Quick start
 
 ```bash
@@ -11,11 +13,11 @@ cargo test
 cargo run --release --bin te-demo
 ```
 
-Encoder modes (`--mode ascii|half-block|bgcolor`):
+Encoder modes (`--mode ascii|half-block|bgcolor`) — full matrix in the [terminal specs](docs/terminal-specs.md):
 
-- `ascii` (default) — FG true-colour + density glyphs; works widely.
-- `half-block` — `▀` with FG/BG true-colour (needs a terminal that applies `48;2` backgrounds: Kitty, Ghostty, WezTerm, …).
-- `bgcolor` — BG true-colour fill + dim glyph (same BG requirement).
+- `ascii` (default) — **Minimum** tier; FG true-colour + density glyphs.
+- `half-block` — **Recommended** tier; `▀` with FG/BG true-colour.
+- `bgcolor` — **Recommended** tier; BG true-colour fill + dim glyph.
 
 ### Controls
 
