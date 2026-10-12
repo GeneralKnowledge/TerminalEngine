@@ -154,5 +154,5 @@ On this agent’s **xfce4-terminal 1.1.3 / VTE** host: `COLORTERM=truecolor` is 
 
 - **Assumption:** TerminalEngine wants a general-purpose engine, not a Doom port or a single demo reel.
 - **Assumption:** A permissive MIT (or MIT/Apache-2.0 dual) licence is desired; AGPL+Commons Clause is unacceptable as a core dependency.
-- **Assumption:** First milestone targets character/cell encoders; Kitty/iTerm image protocol is post-milestone.
+- **Assumption (superseded):** First milestone targeted character/cell encoders; **Ultra** Kitty/iTerm presentation is now implemented in `encode/image_protocol.rs` (still optional at runtime).
 - **Assumption:** “Original milestone requirements” referred to the architecture goals embedded in this Phase 0 brief, since none were checked into the empty repository.
