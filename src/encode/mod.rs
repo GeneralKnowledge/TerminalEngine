@@ -6,10 +6,15 @@
 mod ascii;
 mod bgcolor;
 mod half_block;
+mod image_protocol;
 
 pub use ascii::AsciiDensityEncoder;
 pub use bgcolor::BgColorAsciiEncoder;
 pub use half_block::{HalfBlockCell, HalfBlockEncoder};
+pub use image_protocol::{
+    detect_image_protocol, framebuffer_to_rgb24, ultra_framebuffer_size, ImageProtocol,
+    ImageProtocolEncoder,
+};
 
 use crate::framebuffer::FrameBuffer;
 

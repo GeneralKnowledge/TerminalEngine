@@ -10,10 +10,10 @@
 //!  SoftwareRasterizer ──► FrameBuffer + DepthBuffer
 //!         │
 //!         ▼
-//!    Encoder trait  (ASCII / half-block / bgcolor / …)
+//!    Encoder trait  (ASCII / half-block / bgcolor / ultra …)
 //!         │
 //!         ▼
-//!    Ratatui viewport or raw ANSI
+//!    Ratatui viewport or Kitty / iTerm image protocol
 //! ```
 
 pub mod camera;
@@ -30,7 +30,8 @@ pub use camera::Camera;
 pub use color::Rgb;
 pub use depth::DepthBuffer;
 pub use encode::{
-    AsciiDensityEncoder, BgColorAsciiEncoder, Encoder, HalfBlockCell, HalfBlockEncoder,
+    detect_image_protocol, ultra_framebuffer_size, AsciiDensityEncoder, BgColorAsciiEncoder,
+    Encoder, HalfBlockCell, HalfBlockEncoder, ImageProtocol, ImageProtocolEncoder,
 };
 pub use framebuffer::FrameBuffer;
 pub use geometry::{Triangle, Vertex};

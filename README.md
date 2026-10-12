@@ -13,18 +13,19 @@ cargo test
 cargo run --release --bin te-demo
 ```
 
-Encoder modes (`--mode ascii|half-block|bgcolor`) — full matrix in the [terminal specs](docs/terminal-specs.md):
+Encoder modes (`--mode ascii|half-block|bgcolor|ultra`) — full matrix in the [terminal specs](docs/terminal-specs.md):
 
 - `ascii` (default) — **Minimum** tier; FG true-colour + density glyphs.
 - `half-block` — **Recommended** tier; `▀` with FG/BG true-colour.
 - `bgcolor` — **Recommended** tier; BG true-colour fill + dim glyph.
+- `ultra` — **Ultra** tier; Kitty graphics or iTerm2 inline images (auto-detected).
 
 ### Controls
 
 | Key | Action |
 | --- | --- |
 | `q` / Esc | Quit |
-| `m` | Cycle encoder (`ascii` → `half-block` → `bgcolor`) |
+| `m` | Cycle encoder (`ascii` → `half-block` → `bgcolor` → `ultra` when available) |
 | `1` / `2` | Cube / pyramid |
 | Space | Toggle auto-rotation |
 | Arrow keys | Orbit camera |
